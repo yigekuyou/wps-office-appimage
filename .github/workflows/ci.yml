@@ -11,9 +11,16 @@ jobs:
       - name: Install unrpm
         run: |
           sudo apt-get update
-          sudo apt-get install obs-build
+          sudo apt-get install obs-build libxi-dev libxcursor-dev libgl-dev libxrandr-dev libasound2-dev mesa-common-dev
+          git clone --depth=1 https://github.com/vlang/v
+          pushd v
+          make
+          ./v up
+          ./v install ui
+          popd
       - name: Build AppImage
         run: |
+          ./v/v -skip-unused -prod -cc gcc -cflags -static -compress wps-launcher.v
           bash create_appimage.sh
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
