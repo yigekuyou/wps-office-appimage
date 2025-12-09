@@ -39,10 +39,10 @@ fn main() {
        process.run()
     }
   } else {
-    mut wps := os.resource_abs_path("usr/share/icons/hicolor/256x256/mimetypes/wps-office2019-wpsmain.png")
-    mut et := os.resource_abs_path("usr/share/icons/hicolor/256x256/mimetypes/wps-office2019-etmain.png")
-    mut wpp := os.resource_abs_path("usr/share/icons/hicolor/256x256/mimetypes/wps-office2019-wppmain.png")
-    mut pdf := os.resource_abs_path("usr/share/icons/hicolor/256x256/mimetypes/wps-office2019-pdfmain.png")
+    mut wps := os.resource_abs_path("usr/share/icons/hicolor/256x256/mimetypes/wps-office2023-wpsmain.png")
+    mut et := os.resource_abs_path("usr/share/icons/hicolor/256x256/mimetypes/wps-office2023-etmain.png")
+    mut wpp := os.resource_abs_path("usr/share/icons/hicolor/256x256/mimetypes/wps-office2023-wppmain.png")
+    mut pdf := os.resource_abs_path("usr/share/icons/hicolor/256x256/mimetypes/wps-office2023-pdfmain.png")
 
 	  mut app := &App{}
 

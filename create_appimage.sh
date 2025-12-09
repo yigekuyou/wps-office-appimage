@@ -8,8 +8,8 @@ get_url() {
   echo $md5
 }
 
-WPS_FILE="wps-office-${WPS_VERSION}.${WPS_RELEASE}-1.x86_64.rpm"
-WPS_PATH="/wps/download/ep/Linux2019/${WPS_RELEASE}/${WPS_FILE}"
+WPS_FILE="wps-office-${WPS_VERSION}.${WPS_RELEASE}.AK.preread.sw-1-542489.x86_64.rpm"
+WPS_PATH="/wps/download/ep/Linux2023/${WPS_RELEASE}/${WPS_FILE}"
 TIMESTAMP=$(date +%s)
 WPS_URL="https://wps-linux-personal.wpscdn.cn${WPS_PATH}?t=${TIMESTAMP}&k=$(get_url ${WPS_PATH} ${TIMESTAMP})"
 echo $WPS_URL
@@ -25,8 +25,8 @@ pushd ${APPDIR}
 chmod +x AppRun
 unrpm ${WPS_FILE}
 rm -rf ${WPS_FILE}
-cp -r usr/share/icons/hicolor/256x256/mimetypes/wps-office2019-kprometheus.png .
-cp -r usr/share/icons/hicolor/256x256/mimetypes/wps-office2019-kprometheus.png ./.DirIcon
+cp -r usr/share/icons/hicolor/256x256/mimetypes/wps-office2023-kprometheus.png .
+cp -r usr/share/icons/hicolor/256x256/mimetypes/wps-office2023-kprometheus.png ./.DirIcon
 popd
 
 APPIMAGETOOL=$(wget -q https://api.github.com/repos/probonopd/go-appimage/releases -O - | sed 's/[()",{} ]/\n/g' | grep -o 'https.*continuous.*tool.*86_64.*mage$' | head -1)
