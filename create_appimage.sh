@@ -8,7 +8,9 @@ get_url() {
   echo $md5
 }
 
-WPS_FILE="wps-office-${WPS_VERSION}.${WPS_RELEASE}.AK.preread.sw-1-542489.x86_64.rpm"
+WPS_FILE="wps-office-${WPS_VERSION}.${WPS_RELEASE}.AK.preread.sw-1-${WPS_PREREAD}.x86_64.rpm"
+
+
 WPS_PATH="/wps/download/ep/Linux2023/${WPS_RELEASE}/${WPS_FILE}"
 TIMESTAMP=$(date +%s)
 WPS_URL="https://wps-linux-personal.wpscdn.cn${WPS_PATH}?t=${TIMESTAMP}&k=$(get_url ${WPS_PATH} ${TIMESTAMP})"
@@ -19,7 +21,6 @@ mkdir -p ${APPDIR}
 wget -c ${WPS_URL} -O ${APPDIR}/${WPS_FILE}
 cp -r AppRun ${APPDIR}
 cp -r com.wps.Office.desktop ${APPDIR}
-cp -r wps-launcher ${APPDIR}
 
 pushd ${APPDIR}
 chmod +x AppRun
@@ -27,6 +28,8 @@ unrpm ${WPS_FILE}
 rm -rf ${WPS_FILE}
 cp -r usr/share/icons/hicolor/256x256/mimetypes/wps-office2023-kprometheus.png .
 cp -r usr/share/icons/hicolor/256x256/mimetypes/wps-office2023-kprometheus.png ./.DirIcon
+sed -i 's|/opt|${APPDIR}/opt|g' usr/bin/{et,misc,wpp,wps,wpspdf}
+sed -i '1a \[\[ "$XMODIFIERS" == "@im=fcitx" \]\] && export QT_IM_MODULE=fcitx5\n\[\[ -f ~/.config/Kingsoft/fonts/fonts.conf \]\] && export FONTCONFIG_FILE=~/.config/Kingsoft/fonts/fonts.conf'   usr/bin/{et,misc,wpp,wps,wpspdf}
 popd
 
 APPIMAGETOOL=$(wget -q https://api.github.com/repos/probonopd/go-appimage/releases -O - | sed 's/[()",{} ]/\n/g' | grep -o 'https.*continuous.*tool.*86_64.*mage$' | head -1)
