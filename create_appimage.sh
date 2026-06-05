@@ -8,7 +8,7 @@ get_url() {
   echo $md5
 }
 
-WPS_FILE="wps-office-${WPS_VERSION}.${WPS_RELEASE}.AK.preread.sw-1-${WPS_PREREAD}.x86_64.rpm"
+WPS_FILE="wps-office-${WPS_VERSION}.${WPS_RELEASE}.AK.preread.sw.Personal-1-${WPS_PREREAD}.x86_64.rpm"
 
 
 WPS_PATH="/wps/download/ep/Linux2023/${WPS_RELEASE}/${WPS_FILE}"
